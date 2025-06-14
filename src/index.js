@@ -13,6 +13,8 @@ import creatEventsTable from './data/createEventTable.js'
 import eventRoute from './routes/events.route.js'
 import createCategoryTable from './data/createCategoryTable.js';
 import categoryRoute from './routes/category.route.js'
+import createFolderTabl from './data/createFolderTable.js'
+import folderRoute from './routes/folder.route.js'
 
 dotenv.config();
 
@@ -36,6 +38,7 @@ app.use('/', express.static(join(__dirname, 'public')))
 app.use('/api/v1/user', userRoutes)
 app.use('/api/v1/event', eventRoute)
 app.use('/api/v1/category', categoryRoute)
+app.use('/api/v1/folder', folderRoute)
 
 // Error handling middleware
 app.use(errorHanding)
@@ -44,6 +47,7 @@ app.use(errorHanding)
 createUsersTable()
 creatEventsTable()
 createCategoryTable()
+createFolderTabl()
 
 
 // Testing POSTGRESQL Connection
