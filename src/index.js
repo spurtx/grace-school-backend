@@ -4,6 +4,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import {dirname, join} from 'path'
 import {fileURLToPath} from 'url'
+import path from 'path'
 
 import pool from './configs/db.js'
 import userRoutes from './routes/user.route.js'
@@ -15,6 +16,8 @@ import createCategoryTable from './data/createCategoryTable.js';
 import categoryRoute from './routes/category.route.js'
 import createFolderTabl from './data/createFolderTable.js'
 import folderRoute from './routes/folder.route.js'
+import createGalleriesTable from './data/createGalleryTable.js'
+import galleryRoute from './routes/gallery.route.js'
 
 dotenv.config();
 
@@ -25,6 +28,8 @@ const port = process.env.PORT || 3001;
 
 const corsOptions = {credentiials: true, origin: process.env.URL || '*'}
 
+// Configure static file serving
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 
 // Middlewares
@@ -39,6 +44,7 @@ app.use('/api/v1/user', userRoutes)
 app.use('/api/v1/event', eventRoute)
 app.use('/api/v1/category', categoryRoute)
 app.use('/api/v1/folder', folderRoute)
+app.use('/api/v1/gallery', galleryRoute)
 
 // Error handling middleware
 app.use(errorHanding)
@@ -48,6 +54,7 @@ createUsersTable()
 creatEventsTable()
 createCategoryTable()
 createFolderTabl()
+createGalleriesTable()
 
 
 // Testing POSTGRESQL Connection
