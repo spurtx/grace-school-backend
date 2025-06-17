@@ -12,9 +12,6 @@ export const createGallery = async (req, res, next) => {
   try {
     // console.log("Req body",req.body);
     const { categoryId } = req.body;
-    console.log("Request file:", req.file);
-    console.log("Request files:", req.files);
-
     
     if (!req.file) {
       return handleResponse(res, 400, "Gallery image is required");

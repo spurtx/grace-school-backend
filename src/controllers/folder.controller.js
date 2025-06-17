@@ -3,6 +3,7 @@ import handleResponse from './../utils/handleResponse.js'
 
 export const createFolder = async (req, res, next) => {
     try {
+        console.log(req.body)
         const {folderName} = req.body
 
         if (!folderName) return handleResponse(res, 501, "Folder name is empty")

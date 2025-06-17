@@ -26,7 +26,7 @@ export const getEventByIdService = async (id) => {
 
         return result.rows[0]
     } catch (error) {
-        
+        throw error
     }
 }
 

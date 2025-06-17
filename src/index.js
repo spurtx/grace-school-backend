@@ -18,6 +18,7 @@ import createFolderTabl from './data/createFolderTable.js'
 import folderRoute from './routes/folder.route.js'
 import createGalleriesTable from './data/createGalleryTable.js'
 import galleryRoute from './routes/gallery.route.js'
+import createContentTable from './data/createContentTable.js';
 
 dotenv.config();
 
@@ -55,6 +56,7 @@ creatEventsTable()
 createCategoryTable()
 createFolderTabl()
 createGalleriesTable()
+createContentTable()
 
 
 // Testing POSTGRESQL Connection

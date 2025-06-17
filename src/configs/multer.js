@@ -37,10 +37,19 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
+    const allowedMimeTypes = [
+        'application/pdf',
+        'application/msword', // .doc
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx
+        'application/vnd.ms-excel', // .xls
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // .xlsx
+        'text/plain' // .txt
+    ];
+
     // Fix: Check for actual MIME types, not fieldname-based MIME types
     if (file.fieldname === 'gallery' && file.mimetype.startsWith('image/')) {
         cb(null, true);
-    } else if (file.fieldname === 'content' && (file.mimetype.startsWith('image/') || file.mimetype.startsWith('video/') || file.mimetype.startsWith('audio/'))) {
+    } else if (file.fieldname === 'content' && (file.mimetype.startsWith('image/') || file.mimetype.startsWith('video/') || file.mimetype.startsWith('audio/')|| allowedMimeTypes.includes(file.mimetype))) {
         cb(null, true);
     } else {
         cb(new Error(`Invalid file type for ${file.fieldname}. Received: ${file.mimetype}`), false);
